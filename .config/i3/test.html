@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="result" disabled>
+    <div class="buttons">
+      <button class="operator" value="clear">C</button>
+      <button class="operator" value="backspace">←</button>
+      <button class="operator" value="%">%</button>
+      <button class="operator" value="/">/</button>
+      <button value="7">7</button>
+      <button value="8">8</button>
+      <button value="9">9</button>
+      <button class="operator" value="*">*</button>
+      <button value="4">4</button>
+      <button value="5">5</button>
+      <button value="6">6</button>
+      <button class="operator" value="-">-</button>
+      <button value="1">1</button>
+      <button value="2">2</button>
+      <button value="3">3</button>
+      <button class="operator" value="+">+</button>
+      <button class="operator" value="0">0</button>
+      <button value=".">.</button>
+      <button class="operator" value="=">=</button>
+    </div>
+  </div>
+  <script>
+    const result = document.getElementById('result');
+    const buttons = document.querySelectorAll('button');
+
+    let currentInput = '';
+    let previousInput = '';
+    let operator = '';
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const value = button.value;
+
+        if (value === 'C') {
+          currentInput = '';
+          previousInput = '';
+          operator = '';
+          updateResult();
+        } else if (value === '←') {
+          currentInput = currentInput.slice(0, -1);
+          updateResult();
+        } else if (value === '%' && currentInput !== '') {
+          currentInput = (parseFloat(currentInput) / 100).toString();
+          updateResult();
+        } else if (value === '.' && !currentInput.includes('.')) {
+          currentInput += value;
+          updateResult();
+        } else if (value === '=' && previousInput !== '') {
+          calculateResult();
+        } else if (value === '+' || value === '-' || value === '*' || value === '/') {
+          if (currentInput !== '') {
+            previousInput = currentInput;
+            operator = value;
+            currentInput = '';
+          }
+        } else {
+          currentInput += value;
+          updateResult();
+        }
+      });
+    });
+
+    function updateResult() {
+      result.value = currentInput;
+    }
+
+    function calculateResult() {
+      let resultValue;
+      switch (operator) {
+        case '+':
+          resultValue = parseFloat(previousInput) + parseFloat(currentInput);
+          break;
+        case '-':
+          resultValue = parseFloat(previousInput) - parseFloat(currentInput);
+          break;
+        case '*':
+          resultValue = parseFloat(previousInput) * parseFloat(currentInput);
+          break;
+        case '/':
+          resultValue = parseFloat(previousInput) / parseFloat(currentInput);
+          break;
+        default:
+          return;
+      }
+      result.value = resultValue;
+      previousInput = '';
+      currentInput = resultValue.toString();
+      operator = '';
+    }
+  </script>
+</body>
+</html>

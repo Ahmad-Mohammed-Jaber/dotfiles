@@ -1,0 +1,12 @@
+2025-07-28 00:15:31.718 [info] Extension host with pid 355489 started
+2025-07-28 00:15:31.718 [info] Skipping acquiring lock for /home/ahmad/.config/Code/User/workspaceStorage/947a503f426b06996f5452bf9fe16577.
+2025-07-28 00:15:31.859 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2025-07-28 00:15:31.886 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2025-07-28 00:15:32.044 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2025-07-28 00:15:32.074 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2025-07-28 00:15:32.111 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2025-07-28 00:15:32.230 [info] Eager extensions activated
+2025-07-28 00:15:32.241 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2025-07-28 00:15:32.243 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2025-07-28 00:36:20.529 [info] Extension host terminating: renderer closed the MessagePort
+2025-07-28 00:36:20.538 [info] Extension host with pid 355489 exiting with code 0

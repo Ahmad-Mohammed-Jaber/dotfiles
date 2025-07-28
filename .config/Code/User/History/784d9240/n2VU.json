@@ -1,0 +1,7 @@
+{
+    "workbench.sideBar.location": "right",
+    "workbench.colorTheme": "Best Themes - One Dark Pro",
+    "files.autoSave": "afterDelay",
+    "terminal.integrated.fontFamily": "JetBrains Nerd Font Mono",
+    "editor.fontFamily": "'JetBrains Nerd Font', 'monospace', monospace"
+}

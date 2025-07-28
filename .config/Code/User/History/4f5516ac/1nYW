@@ -1,0 +1,193 @@
+#######################
+# Final Merged i3 Config #
+#######################
+
+# Font
+font pango: JetBrains Mono 11
+
+# Mod key
+set $mod Mod4
+
+# Workspace layout
+workspace_layout default
+
+# Window borders
+default_border pixel 0
+hide_edge_borders both
+
+# Gaps
+gaps inner 4
+gaps outer 4
+
+# Window title alignment
+title_align center
+
+# Floating window modifier
+floating_modifier $mod
+
+# Workspace names with icons
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"
+set $workspace4 "4"
+set $workspace5 "5"
+set $workspace6 "6"
+set $workspace7 "7"
+set $workspace8 "8"
+set $workspace9 "9"
+set $workspace10 "10"
+
+# Workspace assignments
+assign [class="discord"] $workspace9
+assign [class="Whatsapp-for-linux"] $workspace9
+assign [class="teams-for-linux"] $workspace9
+
+# Workspace monitor assignments
+workspace $workspace1 output HDMI-1
+workspace $workspace2 output HDMI-1
+workspace $workspace3 output HDMI-1
+workspace $workspace4 output HDMI-1
+workspace $workspace5 output HDMI-1
+workspace $workspace6 output HDMI-1
+workspace $workspace7 output HDMI-1
+workspace $workspace8 output eDP-1
+workspace $workspace9 output eDP-1
+workspace $workspace10 output eDP-1
+
+# ========================
+# ALL KEY BINDINGS FROM CONFIG 2
+# ========================
+
+# Basic controls
+bindsym $mod+Return exec kitty
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec ~/.config/rofi/launchers/type-1/launcher.sh
+bindsym $mod+BackSpace exec ~/.config/rofi/powermenu/type-1/powermenu.sh
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+# Application shortcuts
+bindsym $mod+f exec brave
+bindsym $mod+c exec nemo
+
+# Window navigation
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Window movement
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Layout controls
+bindsym $mod+b split h
+bindsym $mod+v split v
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+f fullscreen
+bindsym $mod+space floating toggle
+bindsym $mod+Shift+space focus mode_toggle
+bindsym $mod+a focus parent
+
+# Workspace switching (numbered)
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+
+# Move containers to workspaces
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+# Multimedia keys
+bindsym XF86AudioRaiseVolume exec --no-startup-id pulsemixer --change-volume +5 --max-volume 150
+bindsym XF86AudioLowerVolume exec --no-startup-id pulsemixer --change-volume -5
+bindsym XF86AudioMute exec --no-startup-id pulsemixer --toggle-mute
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym Print exec flameshot gui
+
+# Resize mode
+mode "resize" {
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# ========================
+# REMAINING CONFIGURATION
+# ========================
+
+# Color scheme
+set $darkbluetrans    #08052be6
+set $darkblue        #08052b
+set $lightblue        #5294e2
+set $urgentred        #e53935
+set $white            #ffffff
+set $black            #000000
+set $black-alt        #202020
+set $purple            #e345ff
+set $darkgrey        #383c4a
+set $grey            #b0b5bd
+set $mediumgrey        #8b8b8b
+set $yellowbrown    #e1b700
+set $cyan            #00b5bd
+
+client.focused            $white      $black-alt  $white        $cyan            $cyan
+client.unfocused        $darkblue    $black-alt  $grey        $darkgrey        $darkgrey
+client.focused_inactive    $darkblue    $black-alt  $grey        $black            $black
+client.urgent            $urgentred    $urgentred    $white        $yellowbrown    $yellowbrown
+
+# Floating rules
+for_window [window_role="About"] floating enable
+for_window [window_role="(?i)GtkFileChooserDialog"] resize set 640 480
+for_window [class=".*"] move position center
+for_window [class="pavucontrol"] floating enable, move position center 
+for_window [class="file-roller"] floating enable, move position center 
+for_window [class="Blueman-manager"] floating enable, move position center 
+for_window [class="gnome-calculator"] floating enable, move position center 
+for_window [class="Nemo"] floating enable resize set 600 600, move position center
+
+# Startup applications
+exec_always --no-startup-id feh --bg-scale /home/ahmad/Pictures/wallpaper.png
+exec_always xrandr --output eDP-1 --mode 1366x768 --pos 0x312 --rotate normal --output HDMI-1 --primary --mode 1920x1080 --pos 1366x0 --rotate normal
+exec_always --no-startup-id picom -b --fade-in-step=1 --fade-out-step=1 --fade-delta=0 --config ~/.config/picom/picom.conf
+exec --no-startup-id autorandr --change --skip-option crtc
+exec --no-startup-id /usr/bin/dunst --config ~/.config/dunst/dunstrc
+exec --no-startup-id nm-applet
+exec --no-startup-id ibus exit
+exec setxkbmap us,ara -option "grp:alt_shift_toggle"
+# Polybar for all monitors
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id picom
